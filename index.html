@@ -8,14 +8,11 @@
   :root {
     --enovar-green: #1f8a52;
     --bg: #f4f7f5;
-    --text: #1a1a1a;
-    --muted: #6b7280;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     background: var(--bg);
-    color: var(--text);
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -25,7 +22,7 @@
   .card {
     background: #fff;
     border-radius: 16px;
-    padding: 40px 32px;
+    padding: 48px 32px;
     max-width: 420px;
     width: 100%;
     text-align: center;
@@ -34,7 +31,7 @@
   .check {
     width: 72px;
     height: 72px;
-    margin: 0 auto 20px;
+    margin: 0 auto 24px;
     border-radius: 50%;
     background: var(--enovar-green);
     display: flex;
@@ -44,62 +41,18 @@
   .check svg { width: 36px; height: 36px; }
   h1 {
     font-size: 22px;
-    margin-bottom: 8px;
     color: var(--enovar-green);
   }
-  p.msg {
-    font-size: 15px;
-    color: var(--text);
-    margin-bottom: 20px;
-    line-height: 1.5;
-  }
-  .code-box {
-    background: var(--bg);
-    border-radius: 8px;
-    padding: 12px;
-    font-family: "Courier New", monospace;
-    font-size: 16px;
-    letter-spacing: 2px;
-    color: var(--muted);
-    margin-bottom: 16px;
-  }
-  .footer {
-    font-size: 12px;
-    color: var(--muted);
-  }
-  .invalid { color: #b91c1c; }
 </style>
 </head>
 <body>
   <div class="card">
-    <div class="check" id="iconBox">
+    <div class="check">
       <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
         <polyline points="20 6 9 17 4 12"></polyline>
       </svg>
     </div>
-    <h1 id="heading">This is an official Enovar Product</h1>
-    <p class="msg" id="message">Thanks for verifying — this item was scanned and matches a genuine Enovar product code.</p>
-    <div class="code-box" id="codeBox">Code: —</div>
+    <h1>This is an official Enovar Product</h1>
   </div>
-
-<script>
-  // Reads ?code=XXXXXXXX from the URL and displays it.
-  // OPTIONAL: to check codes against a real list of valid/used codes,
-  // this would need a backend lookup instead of pure client-side JS
-  // (since anyone could view-source and see a hardcoded list).
-  const params = new URLSearchParams(window.location.search);
-  const code = params.get('code');
-  const codeBox = document.getElementById('codeBox');
-
-  if (code && /^[0-9]{8}$/.test(code)) {
-    codeBox.textContent = 'Code: ' + code;
-  } else {
-    document.getElementById('heading').textContent = 'Invalid or Missing Code';
-    document.getElementById('heading').classList.add('invalid');
-    document.getElementById('message').textContent = 'This link is missing a valid 8-digit product code.';
-    document.getElementById('iconBox').style.background = '#b91c1c';
-    codeBox.style.display = 'none';
-  }
-</script>
 </body>
 </html>
